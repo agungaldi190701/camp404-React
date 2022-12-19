@@ -53,7 +53,47 @@ function ManajemenBuku({
                 </div>
             </div>
             <br></br>
-            <div id='formUbah'></div>
+            <div id='formUbah'>
+                <div className='card'>
+                    <div className='card-header bg-dark text-white'>
+                        <h5 className='card-title '>Edit Buku</h5>
+                    </div>
+                    <div className='card-body'>
+                        <form>
+                            <div className="row g-3 align-items-center">
+                                <div className="col-auto">
+
+                                    <input type="text" id="judul" className="form-control" name='judul' placeholder='Judul...'>
+                                    </input>
+                                </div>
+                                <div className="col-auto">
+
+                                    <input type="text" id="pengarang" className="form-control" name='pengarang' placeholder='Pengarang...'>
+                                    </input>
+                                </div>
+                                <div className="col-auto">
+
+                                    <input type="text" id="penerbit" className="form-control" name='penerbit' placeholder='Penerbit...'>
+                                    </input>
+                                </div>
+                                <div className="col-auto">
+
+                                    <input type="text" id="tahun" className="form-control" name='tahun' placeholder='Tahun...'>
+                                    </input>
+                                </div>
+                                <div className="col-auto">
+
+                                    <button type="button" className="btn btn-secondary ">Batal</button>
+                                    <button type="submit" className="btn btn-success mx-2 ">Edit</button>
+                                </div>
+
+
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
 
 
             <div id='daftarBuku'>
