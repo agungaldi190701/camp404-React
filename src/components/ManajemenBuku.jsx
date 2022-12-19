@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 
-function ManajemenBuku({ bookList }) {
+function ManajemenBuku({ bookList, store }) {
 
     // console.log(bookList);
     const [form, setForm] = useState("");
+    const [input, setInput] = useState();
     // data 
 
     // event handler
@@ -11,11 +12,42 @@ function ManajemenBuku({ bookList }) {
         setForm("tambah");
     }
     function ShowFormEdit(buku) {
+        setInput(buku);
         setForm("edit");
     }
     function HideForm() {
         setForm("");
     }
+    // Handle
+    function handleJudul(event) {
+        let value = event.target.value;
+        let name = event.target.name;
+        setInput({ ...input, [name]: value });
+    }
+    function handlePengarang(event) {
+        let value = event.target.value;
+        let name = event.target.name;
+        setInput({ ...input, [name]: value });
+    }
+    function handlePenerbit(event) {
+        let value = event.target.value;
+        let name = event.target.name;
+        setInput({ ...input, [name]: value });
+    }
+    function handleTahun(event) {
+        let value = event.target.value;
+        let name = event.target.name;
+        setInput({ ...input, [name]: value });
+    }
+
+    function submitAdd(event) {
+        event.preventDefault();
+        store(input);
+        setForm("");
+    }
+
+
+
 
     return (
         <div className='container-fluid mt-3' >
@@ -28,26 +60,26 @@ function ManajemenBuku({ bookList }) {
                             <h5 className='card-title '>Tambah Buku</h5>
                         </div>
                         <div className='card-body'>
-                            <form>
+                            <form onSubmit={submitAdd}>
                                 <div className="row g-3 align-items-center">
                                     <div className="col-auto">
 
-                                        <input type="text" id="judul" className="form-control" name='judul' placeholder='Judul...'>
+                                        <input type="text" id="judul" className="form-control" name='judul' placeholder='Judul...' onChange={handleJudul}>
                                         </input>
                                     </div>
                                     <div className="col-auto">
 
-                                        <input type="text" id="pengarang" className="form-control" name='pengarang' placeholder='Pengarang...'>
+                                        <input type="text" id="pengarang" className="form-control" name='pengarang' placeholder='Pengarang...' onChange={handlePengarang}>
                                         </input>
                                     </div>
                                     <div className="col-auto">
 
-                                        <input type="text" id="penerbit" className="form-control" name='penerbit' placeholder='Penerbit...'>
+                                        <input type="text" id="penerbit" className="form-control" name='penerbit' placeholder='Penerbit...' onChange={handlePenerbit}>
                                         </input>
                                     </div>
                                     <div className="col-auto">
 
-                                        <input type="text" id="tahun" className="form-control" name='tahun' placeholder='Tahun...'>
+                                        <input type="text" id="tahun" className="form-control" name='tahun' placeholder='Tahun...' onChange={handleTahun}>
                                         </input>
                                     </div>
                                     <div className="col-auto">
@@ -75,22 +107,22 @@ function ManajemenBuku({ bookList }) {
                                 <div className="row g-3 align-items-center">
                                     <div className="col-auto">
 
-                                        <input type="text" id="judul" className="form-control" name='judul' placeholder='Judul...'>
+                                        <input type="text" id="judul" className="form-control" name='judul' placeholder='Judul...' value={input.judul}>
                                         </input>
                                     </div>
                                     <div className="col-auto">
 
-                                        <input type="text" id="pengarang" className="form-control" name='pengarang' placeholder='Pengarang...'>
+                                        <input type="text" id="pengarang" className="form-control" name='pengarang' placeholder='Pengarang...' value={input.pengarang}>
                                         </input>
                                     </div>
                                     <div className="col-auto">
 
-                                        <input type="text" id="penerbit" className="form-control" name='penerbit' placeholder='Penerbit...'>
+                                        <input type="text" id="penerbit" className="form-control" name='penerbit' placeholder='Penerbit...' value={input.penerbit}>
                                         </input>
                                     </div>
                                     <div className="col-auto">
 
-                                        <input type="text" id="tahun" className="form-control" name='tahun' placeholder='Tahun...'>
+                                        <input type="text" id="tahun" className="form-control" name='tahun' placeholder='Tahun...' value={input.tahun}>
                                         </input>
                                     </div>
                                     <div className="col-auto">
@@ -136,7 +168,7 @@ function ManajemenBuku({ bookList }) {
                                         <td>{buku.penerbit}</td>
                                         <td>{buku.tahun}</td>
                                         <td>
-                                            <button className='btn btn-sm btn-warning mx-2' onClick={ShowFormEdit}>Ubah</button>
+                                            <button className='btn btn-sm btn-warning mx-2' onClick={() => ShowFormEdit(buku)}>Ubah</button>
                                             <button className='btn btn-sm btn-danger'>Hapus</button>
                                         </td>
                                     </tr>

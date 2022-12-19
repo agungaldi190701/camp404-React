@@ -26,12 +26,17 @@ function App() {
     },
   ])
 
+  function storeData(input) {
+    console.log(input);
+    alert('Data berhasil disimpan');
+  }
+
   return (
     <div>
       <Router>
         <Navbar />
         <Routes>
-          <Route path='manajemen-buku' element={<ManajemenBuku bookList={buku} />} />
+          <Route path='manajemen-buku' element={<ManajemenBuku bookList={buku} store={storeData} />} />
           <Route path='menu-lain' element={<MenuLain />} />
         </Routes>
       </Router>
